@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0e1030" />
+<title>운영자 · OX 퀴즈쇼</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div id="app">
+  <section class="view active center" id="v-auth">
+    <div style="font-size:64px;margin-bottom:16px">🎛️</div>
+    <h1>운영자 모드</h1>
+    <p class="sub">운영자 키를 입력하세요</p>
+    <div class="stack" style="width:100%">
+      <input type="password" id="key" placeholder="운영자 키" autocomplete="off" />
+      <button class="btn" id="btn-auth">입장</button>
+    </div>
+    <div class="error" id="auth-err"></div>
+  </section>
+
+  <section class="view" id="v-console">
+    <div class="topbar">
+      <span class="brand">🎛️ 운영자 콘솔</span>
+      <span class="badge" id="h-state">대기</span>
+    </div>
+    <div id="h-body"></div>
+    <div class="spacer"></div>
+    <div class="footer-actions stack" id="h-actions"></div>
+  </section>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/host.js"></script>
+</body>
+</html>

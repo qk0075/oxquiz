@@ -1,0 +1,36 @@
+{
+  "title": "OX 퀴즈쇼",
+  "timing": {
+    "introSec": 4,
+    "countdownSec": 5,
+    "questionSec": 10,
+    "revealSec": 3
+  },
+  "scoring": {
+    "correctPoints": 1000,
+    "speedBonusMax": 50
+  },
+  "messages": {
+    "intro": "퀴즈가 시작합니다!",
+    "finish": "퀴즈가 종료되었습니다."
+  },
+  "questions": [
+    { "text": "둘은 같은 혈액형이다.", "answer": "O" },
+    { "text": "첫 해외여행은 일본이다.", "answer": "O" },
+    { "text": "프로포즈는 국내에서 했다.", "answer": "X" },
+    { "text": "둘이 함께 캠핑을 간 적이 있다.", "answer": "X" },
+    { "text": "혼인신고일은 7월 7일이다.", "answer": "X" },
+    { "text": "프로포즈 반지는 수민이가 직접 골랐다.", "answer": "X" },
+    { "text": "둘의 첫 만남에 수민이는 지각했다.", "answer": "X" },
+    { "text": "혼인신고를 가족식보다 먼저 했다.", "answer": "O" },
+    { "text": "둘은 사귄 지 1000일이 지나 결혼했다.", "answer": "X" },
+    { "text": "신혼 여행지는 유럽이다.", "answer": "O" }
+  ],
+  "prizes": [
+    { "rank": 1, "emoji": "🏆", "name": "눈 마사지기", "desc": "", "winners": 1 },
+    { "rank": 2, "emoji": "🥈", "name": "티 세트", "desc": "", "winners": 1 },
+    { "rank": 3, "emoji": "🥉", "name": "대용량 립밤", "desc": "", "winners": 1 },
+    { "rank": 4, "emoji": "🍯", "name": "허니스틱", "desc": "", "winners": 2 },
+    { "rank": 5, "emoji": "🧴", "name": "핸드크림", "desc": "", "winners": 2 }
+  ]
+}

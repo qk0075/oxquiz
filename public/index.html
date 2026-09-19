@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0e1030" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>OX 퀴즈쇼</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div id="app">
+  <section class="view active center" id="v-login">
+    <div style="font-size:64px;margin-bottom:16px">⭕❌</div>
+    <h1 id="login-title">OX 퀴즈쇼</h1>
+    <p class="sub" id="login-sub">닉네임을 정하고 입장하세요!</p>
+    <div class="stack" style="width:100%">
+      <input type="text" id="nick" placeholder="닉네임 (최대 12자)" maxlength="12" autocomplete="off" />
+      <button class="btn" id="btn-join">입장하기</button>
+      <button class="btn ghost" id="btn-cancel" hidden>취소</button>
+    </div>
+    <div class="error" id="login-err"></div>
+  </section>
+
+  <section class="view center" id="v-lobby">
+    <div class="waiting-dot"></div>
+    <h2 id="lobby-nick">닉네임</h2>
+    <p class="sub">입장 완료! 시작을 기다리는 중이에요.<br />⚡ 빨리 답할수록 가산점을 받아요</p>
+    <span class="badge" id="lobby-count">참가자 0명</span>
+    <button class="btn ghost sm" id="btn-rename" style="width:auto;padding:11px 20px;margin-top:22px">
+      ✏️ 닉네임 변경
+    </button>
+  </section>
+
+  <section class="view center" id="v-intro">
+    <div style="font-size:72px;margin-bottom:20px">🎬</div>
+    <h1 id="intro-msg">퀴즈가 시작합니다!</h1>
+    <p class="sub">잠시 후 시작됩니다</p>
+  </section>
+
+  <section class="view center" id="v-count">
+    <p class="sub" style="margin-bottom:12px">준비하세요!</p>
+    <div class="count" id="count-num">5</div>
+  </section>
+
+  <section class="view" id="v-question">
+    <div class="topbar">
+      <span class="brand" id="q-no">Q1 / 10</span>
+      <span class="badge" id="q-score">0점</span>
+    </div>
+    <div class="timer-wrap">
+      <div class="timer-bar"><div class="timer-fill" id="q-bar"></div></div>
+      <div class="timer-num" id="q-sec">10초</div>
+    </div>
+    <div class="question" id="q-text">문제</div>
+    <div class="ox-row">
+      <button class="ox" data-a="O">O</button>
+      <button class="ox" data-a="X">X</button>
+    </div>
+  </section>
+
+  <section class="view center" id="v-reveal">
+    <p class="sub" style="margin-bottom:14px">정답은</p>
+    <div class="result-mark" id="r-mark">O</div>
+    <div class="verdict" id="r-verdict">정답입니다!</div>
+    <div class="gain" id="r-gain"></div>
+    <span class="badge" id="r-score" style="margin-top:18px">0점</span>
+  </section>
+
+  <section class="view center" id="v-finished">
+    <div style="font-size:72px;margin-bottom:20px">🏁</div>
+    <h1 id="finish-msg">퀴즈가 종료되었습니다.</h1>
+    <p class="sub">결과 발표를 기다려주세요</p>
+    <span class="badge" id="f-score">0점</span>
+  </section>
+
+  <section class="view" id="v-ranking">
+    <div class="topbar"><span class="brand">🏅 최종 순위</span><span class="badge" id="rk-me">-</span></div>
+    <div class="rank-list" id="rk-list"></div>
+  </section>
+
+  <section class="view center" id="v-prize">
+    <div class="prize-emoji" id="pz-emoji">🏆</div>
+    <div class="prize-rank" id="pz-rank">1등</div>
+    <div class="prize-name" id="pz-name">상품</div>
+    <div class="prize-desc" id="pz-desc"></div>
+    <div class="winner-box">
+      <div class="winner-label">WINNER</div>
+      <div id="pz-winners"></div>
+    </div>
+  </section>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/player.js"></script>
+</body>
+</html>
