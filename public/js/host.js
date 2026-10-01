@@ -162,9 +162,7 @@
                 s.ranking
                   .map(
                     (p) => `<div class="rank-item">
-                      <span class="rank-no${p.rank ? '' : ' plain'}">${
-                      p.rank ? p.rank + '등' : p.position + '위'
-                    }</span>
+                      <span class="rank-no${p.rank ? '' : ' plain'}">${p.position}등</span>
                       <span class="rank-nick">${esc(p.nick)}</span>
                       <span class="rank-score">${p.correct}개 · ${p.score}점</span>
                     </div>`
@@ -180,8 +178,7 @@
         const ws = pz.winners || [];
         return `
           <div class="panel" style="text-align:center;padding:28px 16px">
-            <div style="font-size:60px">${pz.emoji || '🎁'}</div>
-            <div class="prize-rank">${pz.rank}등</div>
+            <div class="prize-rank">${esc(pz.label || pz.rank + '등')}</div>
             <div style="font-size:23px;font-weight:900">${esc(pz.name)}</div>
             <div style="font-size:14px;color:var(--muted);margin-top:6px">${esc(pz.desc || '')}</div>
           </div>
@@ -195,7 +192,7 @@
             </div>
           </div>
           <div style="font-size:13px;color:var(--muted);text-align:center">
-            ${pz.rank >= s.prizeTotal ? "'처음으로'를 누르면 새 퀴즈를 시작합니다" : `다음: ${pz.rank + 1}등`}
+            ${pz.rank >= s.prizeTotal ? "'처음으로'를 누르면 새 퀴즈를 시작합니다" : `다음: ${esc(nextLabel(s))}`}
           </div>`;
       }
 
@@ -239,6 +236,10 @@
       </div>`;
   }
 
+  function nextLabel(s) {
+    return (s.prizeLabels || [])[s.prizeRank] || s.prizeRank + 1 + '등';
+  }
+
   function actions(s) {
     const reset = `<button class="btn danger sm" data-act="reset">⛔ 강제 종료 (처음으로)</button>`;
 
@@ -253,7 +254,7 @@
         return `<button class="btn" data-act="prize">🎁 상품 안내</button>${reset}`;
       case 'PRIZE':
         return `<button class="btn" data-act="next">
-                  ${s.prizeRank >= s.prizeTotal ? '🔄 처음으로' : `➡ 다음 (${s.prizeRank + 1}등)`}
+                  ${s.prizeRank >= s.prizeTotal ? '🔄 처음으로' : `➡ 다음 (${nextLabel(s)})`}
                 </button>${reset}`;
       default:
         return reset;

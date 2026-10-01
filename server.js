@@ -177,6 +177,7 @@ function hostState() {
       ? { ...config.prizes.find((x) => x.rank === game.prizeRank), winners: winnersOf(game.prizeRank) }
       : null,
     prizeTotal: config.prizes.length,
+    prizeLabels: config.prizes.map((p) => p.label ?? p.rank + "등"),
   };
 }
 

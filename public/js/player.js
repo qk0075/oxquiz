@@ -174,11 +174,11 @@
   function renderRanking(s) {
     const list = s.ranking || [];
     const me = list.find((p) => p.id === s.me?.id);
-    $('rk-me').textContent = me ? (me.rank ? `내 등수 ${me.rank}등` : `내 순위 ${me.position}위`) : '-';
+    $('rk-me').textContent = me ? `내 등수 ${me.position}등` : '-';
     $('rk-list').innerHTML = list
       .map(
         (p) => `<div class="rank-item${p.id === s.me?.id ? ' me' : ''}">
-          <span class="rank-no${p.rank ? '' : ' plain'}">${p.rank ? p.rank + '등' : p.position + '위'}</span>
+          <span class="rank-no${p.rank ? '' : ' plain'}">${p.position}등</span>
           <span class="rank-nick">${esc(p.nick)}</span>
           <span class="rank-score">${fmt(p.score)}점</span>
         </div>`
@@ -189,8 +189,10 @@
   function renderPrize(s) {
     const pz = s.prize;
     if (!pz) return;
-    $('pz-emoji').textContent = pz.emoji || '🎁';
-    $('pz-rank').textContent = `${pz.rank}등`;
+    const em = $('pz-emoji');
+    em.textContent = pz.emoji || '';
+    em.hidden = !pz.emoji;
+    $('pz-rank').textContent = pz.label || `${pz.rank}등`;
     $('pz-name').textContent = pz.name;
     $('pz-desc').textContent = pz.desc || '';
 

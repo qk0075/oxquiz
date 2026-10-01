@@ -27,10 +27,10 @@
     { "text": "신혼 여행지는 유럽이다.", "answer": "O" }
   ],
   "prizes": [
-    { "rank": 1, "emoji": "🏆", "name": "눈 마사지기", "desc": "", "winners": 1 },
-    { "rank": 2, "emoji": "🥈", "name": "티 세트", "desc": "", "winners": 1 },
-    { "rank": 3, "emoji": "🥉", "name": "대용량 립밤", "desc": "", "winners": 1 },
-    { "rank": 4, "emoji": "🍯", "name": "허니스틱", "desc": "", "winners": 2 },
-    { "rank": 5, "emoji": "🧴", "name": "핸드크림", "desc": "", "winners": 2 }
+    { "rank": 1, "label": "1등", "name": "눈 마사지기", "desc": "", "winners": 1 },
+    { "rank": 2, "label": "2등", "name": "티 세트", "desc": "", "winners": 1 },
+    { "rank": 3, "label": "3등", "name": "대용량 립밤", "desc": "", "winners": 1 },
+    { "rank": 4, "label": "4등, 5등", "name": "허니스틱", "desc": "", "winners": 2 },
+    { "rank": 5, "label": "6등, 7등", "name": "핸드크림", "desc": "", "winners": 2 }
   ]
 }
