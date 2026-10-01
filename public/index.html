@@ -11,7 +11,6 @@
 <body>
 <div id="app">
   <section class="view active center" id="v-login">
-    <div style="font-size:64px;margin-bottom:16px">⭕❌</div>
     <h1 id="login-title">OX 퀴즈쇼</h1>
     <p class="sub" id="login-sub">닉네임을 정하고 입장하세요!</p>
     <div class="stack" style="width:100%">
@@ -25,15 +24,14 @@
   <section class="view center" id="v-lobby">
     <div class="waiting-dot"></div>
     <h2 id="lobby-nick">닉네임</h2>
-    <p class="sub">입장 완료! 시작을 기다리는 중이에요.<br />⚡ 빨리 답할수록 가산점을 받아요</p>
+    <p class="sub">입장 완료! 시작을 기다리는 중이에요.<br />빨리 답할수록 가산점을 받아요</p>
     <span class="badge" id="lobby-count">참가자 0명</span>
     <button class="btn ghost sm" id="btn-rename" style="width:auto;padding:11px 20px;margin-top:22px">
-      ✏️ 닉네임 변경
+      닉네임 변경
     </button>
   </section>
 
   <section class="view center" id="v-intro">
-    <div style="font-size:72px;margin-bottom:20px">🎬</div>
     <h1 id="intro-msg">퀴즈가 시작합니다!</h1>
     <p class="sub">잠시 후 시작됩니다</p>
   </section>
@@ -68,14 +66,13 @@
   </section>
 
   <section class="view center" id="v-finished">
-    <div style="font-size:72px;margin-bottom:20px">🏁</div>
     <h1 id="finish-msg">퀴즈가 종료되었습니다.</h1>
     <p class="sub">결과 발표를 기다려주세요</p>
     <span class="badge" id="f-score">0점</span>
   </section>
 
   <section class="view" id="v-ranking">
-    <div class="topbar"><span class="brand">🏅 최종 순위</span><span class="badge" id="rk-me">-</span></div>
+    <div class="topbar"><span class="brand">최종 순위</span><span class="badge" id="rk-me">-</span></div>
     <div class="rank-list" id="rk-list"></div>
   </section>
 

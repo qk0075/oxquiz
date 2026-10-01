@@ -143,10 +143,10 @@
         $('r-mark').className = 'result-mark ' + (ans === 'O' ? 'o' : 'x');
         const my = s.myAnswer;
         const ok = my === ans;
-        $('r-verdict').textContent = !my ? '시간 초과 😴' : ok ? '정답입니다! 🎉' : '아쉬워요 😢';
+        $('r-verdict').textContent = !my ? '시간 초과' : ok ? '정답입니다!' : '아쉬워요';
         $('r-verdict').className = 'verdict ' + (ok ? 'good' : 'bad');
         $('r-gain').innerHTML = ok
-          ? `+${fmt(s.me.lastGain)}점 <span class="bonus">⚡ 스피드 +${s.me.lastBonus}</span>`
+          ? `+${fmt(s.me.lastGain)}점 <span class="bonus">스피드 +${s.me.lastBonus}</span>`
           : '';
         $('r-score').textContent = `${fmt(score)}점`;
         show('v-reveal');

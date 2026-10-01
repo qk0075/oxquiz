@@ -58,7 +58,7 @@
       joinUrl = r.url;
       qrHtml = `${r.dataUrl ? `<img class="qr" src="${r.dataUrl}" alt="참가 QR" />` : ''}
         <div class="link">${esc(r.url)}</div>
-        <button class="btn ghost sm" id="btn-copy" style="margin-top:12px">🔗 참가 링크 복사</button>`;
+        <button class="btn ghost sm" id="btn-copy" style="margin-top:12px">참가 링크 복사</button>`;
     } catch {
       qrHtml = '<div class="link">QR을 불러오지 못했습니다. 새로고침해 주세요.</div>';
     }
@@ -80,8 +80,8 @@
       try { done = document.execCommand('copy'); } catch { done = false; }
       ta.remove();
     }
-    btn.textContent = done ? '✅ 복사됐어요!' : '길게 눌러서 주소를 복사하세요';
-    setTimeout(() => { btn.textContent = '🔗 참가 링크 복사'; }, 2000);
+    btn.textContent = done ? '복사됐어요!' : '길게 눌러서 주소를 복사하세요';
+    setTimeout(() => { btn.textContent = '참가 링크 복사'; }, 2000);
   }
 
   const act = (action, extra) => socket.emit('host:action', { action, ...extra });
@@ -147,7 +147,6 @@
       case 'FINISHED':
         return `
           <div class="panel" style="text-align:center;padding:32px 16px">
-            <div style="font-size:52px">🏁</div>
             <div style="font-size:19px;font-weight:900;margin-top:12px">${esc(s.messages.finish)}</div>
             <div style="font-size:14px;color:var(--muted);margin-top:8px">'종료'를 누르면 등수를 발표합니다</div>
           </div>
@@ -245,20 +244,20 @@
   }
 
   function actions(s) {
-    const reset = `<button class="btn danger sm" data-act="reset">⛔ 강제 종료 (처음으로)</button>`;
+    const reset = `<button class="btn danger sm" data-act="reset">강제 종료 (처음으로)</button>`;
 
     switch (s.state) {
       case 'LOBBY':
         return `<button class="btn" data-act="start" ${s.playerCount ? '' : 'disabled'}>
-                  ▶ 퀴즈 시작${s.playerCount ? '' : ' (참가자 대기 중)'}
+                  퀴즈 시작${s.playerCount ? '' : ' (참가자 대기 중)'}
                 </button>`;
       case 'FINISHED':
-        return `<button class="btn" data-act="finish">🏅 종료 · 등수 발표</button>${reset}`;
+        return `<button class="btn" data-act="finish">종료 · 등수 발표</button>${reset}`;
       case 'RANKING':
-        return `<button class="btn" data-act="prize">🎁 상품 안내</button>${reset}`;
+        return `<button class="btn" data-act="prize">상품 안내</button>${reset}`;
       case 'PRIZE':
         return `<button class="btn" data-act="next">
-                  ${s.prizeRank >= s.prizeTotal ? '🔄 처음으로' : `➡ 다음 (${nextLabel(s)})`}
+                  ${s.prizeRank >= s.prizeTotal ? '처음으로' : `다음 (${nextLabel(s)})`}
                 </button>${reset}`;
       default:
         return reset;
