@@ -240,6 +240,11 @@ input::placeholder { color: #6f74a0; }
   border-radius: 999px;
 }
 .chip.off { opacity: .4; }
+.chip-x {
+  margin-left: 6px; padding: 0 2px; border: 0; background: transparent;
+  color: var(--muted); font-size: 15px; font-weight: 900; line-height: 1; cursor: pointer;
+}
+.chip-x:hover { color: var(--x); }
 .qr { width: 172px; height: 172px; border-radius: 14px; background: #fff; padding: 8px; display: block; margin: 0 auto 12px; }
 .link {
   font-size: 13px; color: var(--o); word-break: break-all; text-align: center;

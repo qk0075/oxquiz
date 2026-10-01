@@ -217,6 +217,15 @@
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
     );
 
+  socket.on('kicked', () => {
+    joined = false;
+    myNick = '';
+    localStorage.removeItem('ox-nick');
+    setLoginMode(false);
+    show('v-login');
+    $('login-err').textContent = '운영자가 참가자 목록에서 내보냈습니다.';
+  });
+
   socket.on('connect', () => {
     if (joined || myNick) {
       socket.emit('player:join', { playerId, nick: myNick }, (res) => {

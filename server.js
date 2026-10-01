@@ -80,6 +80,12 @@ function makePlayer(id, nick) {
   };
 }
 
+function connectedCount() {
+  let n = 0;
+  for (const p of game.players.values()) if (p.connected) n += 1;
+  return n;
+}
+
 function resetScores() {
   for (const p of game.players.values()) {
     p.score = 0;
@@ -155,7 +161,7 @@ function publicState() {
     questionText: game.state === S.QUESTION || game.state === S.REVEAL ? q?.text ?? null : null,
     correctAnswer: game.state === S.REVEAL ? q?.answer ?? null : null,
     remaining: remainingSec(),
-    playerCount: game.players.size,
+    playerCount: connectedCount(),
     prizeRank: game.prizeRank,
   };
 }
@@ -240,6 +246,9 @@ function nextQuestion() {
 }
 
 function resetToLobby() {
+  for (const p of [...game.players.values()]) {
+    if (!p.connected) game.players.delete(p.id);
+  }
   resetScores();
   game.state = S.LOBBY;
   game.qIndex = -1;
@@ -387,10 +396,18 @@ io.on('connection', (socket) => {
         resetToLobby();
         break;
 
-      case 'kick':
-        game.players.delete(playerId);
+      case 'kick': {
+        if (!game.players.delete(playerId)) break;
+        for (const [, sock] of io.of('/').sockets) {
+          if (sock.data.playerId === playerId) {
+            sock.emit('kicked');
+            sock.data.role = 'guest';
+            sock.data.playerId = null;
+          }
+        }
         broadcast();
         break;
+      }
 
       default:
         break;

@@ -204,11 +204,15 @@
   function playersPanel(s) {
     return `
       <div class="panel">
-        <div class="panel-title">참가자 ${s.players.length}명</div>
+        <div class="panel-title">참가자 ${s.playerCount}명${
+          s.players.length > s.playerCount ? ` (연결 끊김 ${s.players.length - s.playerCount}명)` : ''
+        }</div>
         <div class="chips">
           ${
             s.players
-              .map((p) => `<span class="chip${p.connected ? '' : ' off'}">${esc(p.nick)}</span>`)
+              .map(
+                (p) => `<span class="chip${p.connected ? '' : ' off'}">${esc(p.nick)}<button class="chip-x" data-kick="${esc(p.id)}" data-nick="${esc(p.nick)}" title="내보내기">×</button></span>`
+              )
               .join('') || '<span class="chip off">아직 참가자가 없습니다</span>'
           }
         </div>
@@ -267,6 +271,13 @@
         const a = btn.dataset.act;
         if (a === 'reset' && !confirm('퀴즈를 강제 종료하고 대기실로 돌아갑니다.\n계속할까요?')) return;
         act(a);
+      });
+    });
+    document.querySelectorAll('[data-kick]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const nick = btn.dataset.nick || '참가자';
+        if (!confirm(`${nick} 님을 내보낼까요?`)) return;
+        act('kick', { playerId: btn.dataset.kick });
       });
     });
     const copy = $('btn-copy');
